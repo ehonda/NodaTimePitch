@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodaTimePitch", "NodaTimePitch\NodaTimePitch.csproj", "{F00C1470-E797-4B21-B81A-DD3006ED427F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodaTimePitch.Tests", "NodaTimePitch.Tests\NodaTimePitch.Tests.csproj", "{3D29AA55-3E15-4C2D-9007-31ABA300A48B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F00C1470-E797-4B21-B81A-DD3006ED427F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F00C1470-E797-4B21-B81A-DD3006ED427F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F00C1470-E797-4B21-B81A-DD3006ED427F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F00C1470-E797-4B21-B81A-DD3006ED427F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D29AA55-3E15-4C2D-9007-31ABA300A48B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D29AA55-3E15-4C2D-9007-31ABA300A48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D29AA55-3E15-4C2D-9007-31ABA300A48B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D29AA55-3E15-4C2D-9007-31ABA300A48B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
