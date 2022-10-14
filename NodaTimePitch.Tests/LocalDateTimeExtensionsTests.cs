@@ -13,7 +13,7 @@ public class LocalDateTimeExtensionsTests
     //  10  11  12  13  14  15  16
     //  17  18  19  20  21  22  23
     //  24  25  26  27  28  29  30
-    private static class October2022Dates
+    private static class October2022
     {
         public static IEnumerable<LocalDate> Mondays => LocalDatesForSameWeekday(3);
         public static IEnumerable<LocalDate> Tuesdays => LocalDatesForSameWeekday(4);
@@ -34,9 +34,9 @@ public class LocalDateTimeExtensionsTests
     [Description("Previous nth saturday is calculated correctly for the last sunday in october 2022.")]
     public void PreviousNth_saturday_for_last_sunday([Values(0, 1, 2, 3, 4)] int n)
     {
-        var lastSunday = October2022Dates.Sundays.Last();
+        var lastSunday = October2022.Sundays.Last();
         var previousSaturday = lastSunday.PreviousNth(IsoDayOfWeek.Saturday, n);
-        var expectedPreviousSaturday = October2022Dates.Saturdays.Reverse().Prepend(lastSunday).ElementAt(n);
+        var expectedPreviousSaturday = October2022.Saturdays.Reverse().Prepend(lastSunday).ElementAt(n);
 
         previousSaturday.Should().Be(expectedPreviousSaturday);
     }
