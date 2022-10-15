@@ -51,11 +51,23 @@ public class LocalDateTimeExtensionsTests
         });
     }
 
-    // TODO: Test case for month transition
+    [Test]
+    [Description("Previous nth is calculated for a negative n. An exception should be thrown.")]
+    public void Negative_n_throws(
+        [ValueSource(typeof(ValueSources), nameof(ValueSources.IsoDaysOfWeek))] IsoDayOfWeek sourceDay,
+        [ValueSource(typeof(ValueSources), nameof(ValueSources.IsoDaysOfWeek))] IsoDayOfWeek targetDay,
+        [Random(int.MinValue, -1, 3)] int n)
+    {
+        var sourceDate = October2022.LocalDatesWithDayOfWeek(sourceDay).First();
+        var calculatePreviousNth = () => sourceDate.PreviousNth(targetDay, n);
+
+        calculatePreviousNth.Should().Throw<InvalidOperationException>().WithMessage("*negative n*");
+    }
+
     [Test]
     [Description("Previous nth is calculated correctly for a subset of combinations of source and target days " +
                  "in october 2022.")]
-    public void PreviousNth_for_combinations_in_october_2022(
+    public void Combinations_in_october_2022(
         [ValueSource(typeof(ValueSources), nameof(ValueSources.IsoDaysOfWeek))] IsoDayOfWeek sourceDay,
         [ValueSource(typeof(ValueSources), nameof(ValueSources.IsoDaysOfWeek))] IsoDayOfWeek targetDay,
         [Values(0, 1, 2, 3)] int n)
@@ -82,7 +94,7 @@ public class LocalDateTimeExtensionsTests
     [Test]
     [Description("Previous nth is calculated correctly across a backward month transition " +
                  "from october to september 2022")]
-    public void PreviousNth_for_backward_transition_from_october_to_november_2022([Values(0, 1, 2)] int n)
+    public void Backward_transition_from_october_to_november_2022([Values(0, 1, 2)] int n)
     {
         // Calendar for September / October 2022
         // Mon Tue Wed Thu Fri Sat Sun
