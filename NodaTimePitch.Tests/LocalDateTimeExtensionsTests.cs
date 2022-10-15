@@ -6,7 +6,6 @@ namespace NodaTimePitch.Tests;
 
 public class LocalDateTimeExtensionsTests
 {
-    // TODO: Use fake calendar for testing?
     // Calendar for October 2022
     // Mon Tue Wed Thu Fri Sat Sun
     //   3   4   5   6   7   8   9
