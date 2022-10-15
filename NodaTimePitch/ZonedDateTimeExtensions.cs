@@ -4,9 +4,9 @@ using NodaTime;
 namespace NodaTimePitch;
 
 [PublicAPI]
+// TODO: Can we make the functions pure again (e.g. by returning Maybe)?
 public static class ZonedDateTimeExtensions
 {
-    [Pure]
     public static (ZonedDateTime Start, ZonedDateTime End) GetReportPeriod(this ZonedDateTime now)
         => now.DayOfWeek switch
         {
@@ -14,21 +14,16 @@ public static class ZonedDateTimeExtensions
             _ => now.GetNthReportPeriodBefore(1)
         };
 
-    [Pure]
-    private static (ZonedDateTime Start, ZonedDateTime End) GetNthReportPeriodBefore(this ZonedDateTime now, uint n)
+    private static (ZonedDateTime Start, ZonedDateTime End) GetNthReportPeriodBefore(
+        this ZonedDateTime sourceDateTime, int n)
         => (
-            now.GetNthIsoDayOfWeekBefore(IsoDayOfWeek.Sunday, n + 1),
-            now.GetNthIsoDayOfWeekBefore(IsoDayOfWeek.Sunday, n) - Duration.FromSeconds(1));
+            sourceDateTime.PreviousNth(IsoDayOfWeek.Sunday, n + 1),
+            sourceDateTime.PreviousNth(IsoDayOfWeek.Sunday, n) - Duration.FromSeconds(1));
 
-    // TODO: Version for LocalDateTime, only use that one
-    [Pure]
-    public static ZonedDateTime GetNthIsoDayOfWeekBefore(this ZonedDateTime now, IsoDayOfWeek dayOfWeek, uint n) =>
-        n switch
-        {
-            > 1 => now.GetNthIsoDayOfWeekBefore(dayOfWeek, 1).GetNthIsoDayOfWeekBefore(dayOfWeek, n - 1),
-            // TODO: Are there cases where this fails because the offset is wrong?
-            1 => new(now.LocalDateTime.Previous(dayOfWeek), now.Zone, now.Offset),
-            // TODO: Throw on 0 or return now, which one makes more sense?
-            0 => now
-        };
+    // TODO: Provide variant with ZoneLocalMappingResolver -> Do we really need that?
+    private static ZonedDateTime PreviousNth(this ZonedDateTime sourceDateTime, IsoDayOfWeek dayOfWeek, int n)
+    {
+        var targetDate = sourceDateTime.LocalDateTime.Date.PreviousNth(dayOfWeek, n);
+        return targetDate.At(sourceDateTime.TimeOfDay).InZoneLeniently(sourceDateTime.Zone);
+    }
 }
