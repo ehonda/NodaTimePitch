@@ -78,4 +78,24 @@ public class LocalDateTimeExtensionsTests
 
         previousNth.Should().Be(expectedPreviousNth);
     }
+
+    [Test]
+    [Description("Previous nth is calculated correctly across a backward month transition " +
+                 "from october to september 2022")]
+    public void PreviousNth_for_backward_transition_from_october_to_november_2022([Values(0, 1, 2)] int n)
+    {
+        // Calendar for September / October 2022
+        // Mon Tue Wed Thu Fri Sat Sun
+        //  19  20  21  22  23  24  25
+        //  26  27  28  29  30   1   2
+        var saturdayFirstOfOctober = 1.October(2022);
+
+        var previousNthFriday = saturdayFirstOfOctober.PreviousNth(IsoDayOfWeek.Friday, n);
+        
+        var expectedPreviousNthFriday = new[] { 30.September(2022), 23.September(2022) }
+            .Prepend(saturdayFirstOfOctober)
+            .ElementAt(n);
+
+        previousNthFriday.Should().Be(expectedPreviousNthFriday);
+    }
 }
