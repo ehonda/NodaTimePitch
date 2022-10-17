@@ -11,8 +11,7 @@ public class ZonedDateTimeExtensionsTests
     // TODO: Helper functions to write test cases more cleanly
     // TODO: Cleanup
 
-    private static void ExpectReportPeriod(string startPattern, string endPattern,
-        (ZonedDateTime Start, ZonedDateTime End) actualReportPeriod)
+    private static void ExpectReportPeriod(string startPattern, string endPattern, ReportPeriod actualReportPeriod)
     {
         var expectedStart = new ZonedDateTime(
             LocalDateTimePattern.GeneralIso.Parse(startPattern).Value,
