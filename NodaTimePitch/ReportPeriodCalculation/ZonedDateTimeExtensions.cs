@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using NodaTime;
 
-namespace NodaTimePitch;
+namespace NodaTimePitch.ReportPeriodCalculation;
 
 [PublicAPI]
 // TODO: Can we make the functions pure again (e.g. by returning Maybe)?

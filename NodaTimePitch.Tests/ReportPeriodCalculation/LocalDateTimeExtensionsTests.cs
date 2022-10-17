@@ -1,8 +1,9 @@
 ﻿using FluentAssertions;
 using NodaTime;
 using NodaTime.Testing.Extensions;
+using NodaTimePitch.ReportPeriodCalculation;
 
-namespace NodaTimePitch.Tests;
+namespace NodaTimePitch.Tests.ReportPeriodCalculation;
 
 public class LocalDateTimeExtensionsTests
 {

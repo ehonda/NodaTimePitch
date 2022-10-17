@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using NodaTime;
 
-namespace NodaTimePitch;
+namespace NodaTimePitch.ReportPeriodCalculation;
 
 [PublicAPI]
 public static class LocalDateTimeExtensions
